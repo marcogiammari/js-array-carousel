@@ -27,7 +27,7 @@ for (let i = 0; i < slides.length; i++) {
 // definisco una funzione nextSlide per l'apposito bottone
 nextBtn.addEventListener("click", nextSlide);
 function nextSlide() {
-
+    
     if (currentSlide < slides.length -1) {
         for (let i = 0; i < slides.length; i++) {
             let slide = slides[i];
@@ -39,11 +39,39 @@ function nextSlide() {
             }
             
         }
+        currentSlide++;
     }
     else if (currentSlide == slides.length -1) {
         currentSlide = 0;
         slides[slides.length-1].classList.add("hidden");
         slides[0].classList.remove("hidden");
     }
-    currentSlide++;
+    
+    console.log(currentSlide);
+}
+
+// definisco una funzione prevSlide per l'apposito bottone
+prevBtn.addEventListener("click", prevSlide);
+function prevSlide() {
+
+    if (currentSlide > 0) {
+        for (let i = 0; i < slides.length; i++) {
+            let slide = slides[i];
+            if (i == currentSlide-1) {
+                slide.classList.remove("hidden");
+            }
+            else {
+                slide.classList.add("hidden");
+            }
+            
+        }
+        currentSlide--;
+    }
+    else if (currentSlide == 0) {
+        currentSlide = slides.length -1;
+        slides[0].classList.add("hidden");
+        slides[slides.length-1].classList.remove("hidden");
+    }
+    
+    console.log(currentSlide);
 }
