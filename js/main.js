@@ -38,12 +38,12 @@ for (let i = 0; i < slides.length; i++) {
 // definisco una funzione nextSlide per l'apposito bottone
 nextBtn.addEventListener("click", nextSlide);
 function nextSlide() {
-    
-    if (currentSlide < slides.length -1) {
+
+    if (currentSlide < slides.length - 1) {
         for (let i = 0; i < slides.length; i++) {
             let slide = slides[i];
             let thumbnail = thumbnails[i];
-            if (i == currentSlide+1) {
+            if (i == currentSlide + 1) {
                 slide.classList.remove("hidden");
                 thumbnail.classList.remove("inactive");
                 thumbnail.classList.add("active");
@@ -52,20 +52,20 @@ function nextSlide() {
                 slide.classList.add("hidden");
                 thumbnail.classList.add("inactive");
                 thumbnail.classList.remove("active");
-            }            
+            }
         }
         currentSlide++;
     }
-    else if (currentSlide == slides.length -1) {
+    else if (currentSlide == slides.length - 1) {
         currentSlide = 0;
-        slides[slides.length-1].classList.add("hidden");
-        thumbnails[thumbnails.length-1].classList.add("inactive");
-        thumbnails[thumbnails.length-1].classList.remove("active");
+        slides[slides.length - 1].classList.add("hidden");
+        thumbnails[thumbnails.length - 1].classList.add("inactive");
+        thumbnails[thumbnails.length - 1].classList.remove("active");
         slides[0].classList.remove("hidden");
         thumbnails[0].classList.remove("inactive");
         thumbnails[0].classList.add("active");
     }
-    
+
     console.log(currentSlide);
 }
 
@@ -77,7 +77,7 @@ function prevSlide() {
         for (let i = 0; i < slides.length; i++) {
             let slide = slides[i];
             let thumbnail = thumbnails[i];
-            if (i == currentSlide-1) {
+            if (i == currentSlide - 1) {
                 slide.classList.remove("hidden");
                 thumbnail.classList.remove("inactive");
                 thumbnail.classList.add("active");
@@ -87,19 +87,39 @@ function prevSlide() {
                 thumbnail.classList.add("inactive");
                 thumbnail.classList.remove("active");
             }
-            
+
         }
         currentSlide--;
     }
     else if (currentSlide == 0) {
-        currentSlide = slides.length -1;
+        currentSlide = slides.length - 1;
         slides[0].classList.add("hidden");
         thumbnails[0].classList.add("inactive");
         thumbnails[0].classList.remove("active");
-        slides[slides.length-1].classList.remove("hidden");
-        thumbnails[thumbnails.length-1].classList.remove("inactive");
-        thumbnails[thumbnails.length-1].classList.add("active");
+        slides[slides.length - 1].classList.remove("hidden");
+        thumbnails[thumbnails.length - 1].classList.remove("inactive");
+        thumbnails[thumbnails.length - 1].classList.add("active");
     }
-    
+
     console.log(currentSlide);
+}
+
+// uso un for per aggiungere l'evento click alle anteprime e definisco la funzione 
+for (let i = 0; i < thumbnails.length; i++) {
+    let thumbnail = thumbnails[i];
+    thumbnail.addEventListener("click", function () {
+        slides[currentSlide].classList.add("hidden");
+        thumbnails[currentSlide].classList.add("inactive");
+        thumbnails[currentSlide].classList.remove("active");
+        for (let i = 0; i < slides.length; i++) {
+            slide = slides[i];
+            if (slide.getAttribute("src") == thumbnail.getAttribute("src")) {
+                slides[currentSlide].classList.add("hidden");
+                slide.classList.remove("hidden");
+                thumbnails[i].classList.remove("inactive");
+                thumbnails[i].classList.add("active");
+                currentSlide = i;
+            }
+        }
+    });
 }
