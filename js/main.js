@@ -109,17 +109,10 @@ for (let i = 0; i < thumbnails.length; i++) {
     let thumbnail = thumbnails[i];
     thumbnail.addEventListener("click", function () {
         slides[currentSlide].classList.add("hidden");
+        slides[i].classList.remove("hidden");
         thumbnails[currentSlide].classList.add("inactive");
         thumbnails[currentSlide].classList.remove("active");
-        for (let i = 0; i < slides.length; i++) {
-            slide = slides[i];
-            if (slide.getAttribute("src") == thumbnail.getAttribute("src")) {
-                slides[currentSlide].classList.add("hidden");
-                slide.classList.remove("hidden");
-                thumbnails[i].classList.remove("inactive");
-                thumbnails[i].classList.add("active");
-                currentSlide = i;
-            }
-        }
+        thumbnail.classList.add("active");
+        currentSlide = i;
     });
 }
