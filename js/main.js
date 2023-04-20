@@ -106,13 +106,13 @@ function prevSlide() {
 
 // uso un for per aggiungere l'evento click alle anteprime e definisco la funzione 
 for (let i = 0; i < thumbnails.length; i++) {
-    let thumbnail = thumbnails[i];
-    thumbnail.addEventListener("click", function () {
+    thumbnails[i].addEventListener("click", function () {
         slides[currentSlide].classList.add("hidden");
         slides[i].classList.remove("hidden");
         thumbnails[currentSlide].classList.add("inactive");
         thumbnails[currentSlide].classList.remove("active");
-        thumbnail.classList.add("active");
+        thumbnails[i].classList.add("active");
+        thumbnails[i].classList.remove("inactive");
         currentSlide = i;
     });
 }
